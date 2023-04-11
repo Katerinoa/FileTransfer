@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+# tomcat文件传输限制
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+# 七牛云秘钥
+oss:
+  qiniu:
+    accessKey: A_Oq5r4u1CxkfjqK76gvbzcisZKy58HS7aNJEpgX
+    secretKey: K4ZS0TPpBH6cY9_mUhezpEMOEIcFZKJ5Fqk7P2e6
+    bucketName: filetransferpractice
+    bucketPath: http://rsxjnizx9.hn-bkt.clouddn.com/
+
+# 消息内容
+message:
+  success: 操作成功！
+  fileNameNullError: 文件名不能为空！
+  invalidFileNameError: 文件名应仅包含汉字、字母、数字、下划线和点号
