@@ -27,7 +27,7 @@ public class QiNiuConfig {
 	private String bucketPath;
 
 	@Bean
-	public void init() {
+	public void qiniuInit() {
 		AuthorizeInfo.accessKey = accessKey;
 		AuthorizeInfo.secretKey = secretKey;
 		AuthorizeInfo.bucketName = bucketName;

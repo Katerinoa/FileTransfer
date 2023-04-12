@@ -6,13 +6,17 @@ package com.practice.filetransfer.Util;
 
 import com.google.gson.Gson;
 import com.practice.filetransfer.Constant.AuthorizeInfo;
+import com.practice.filetransfer.Constant.ErrorCode;
 import com.practice.filetransfer.Constant.FileType;
+import com.practice.filetransfer.Constant.MessageInfo;
+import com.practice.filetransfer.Exception.FileValidationException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import com.qiniu.util.StringMap;
 import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
@@ -35,7 +39,7 @@ public class QiNiuUtil {
 		String bucketPath = AuthorizeInfo.bucketPath;
 		//鉴权信息
 		Auth auth = Auth.create(accessKey,secretKey);
-		String upToken = auth.uploadToken(bucketName);
+		String upToken = auth.uploadToken(bucketName, null, 3600, new StringMap().put("force", "true"));//覆盖同名文件
 
 		String key = null;
 		if(filetype.equals(FileType.IMAGE))
@@ -43,7 +47,7 @@ public class QiNiuUtil {
 		else if(filetype.equals(FileType.VIDEO))
 			key = "Video/" + fileName.toString();
 		else
-			System.err.println("文件类型错误");  //TODO: 此处需抛出异常
+			throw new FileValidationException(MessageInfo.fileTypeError, ErrorCode.fileTypeError);
 
 		Response response = uploadManager.put(file,key,upToken,null,null);
 		//解析上传成功结果

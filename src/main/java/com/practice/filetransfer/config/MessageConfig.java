@@ -1,7 +1,9 @@
 package com.practice.filetransfer.config;
 
+import com.practice.filetransfer.Constant.MessageInfo;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Data
@@ -25,5 +27,15 @@ public class MessageConfig {
 
 	@Value("${message.fileTypeError}")
 	public String fileTypeError;
+
+	@Bean
+	public void messageInit() {
+		MessageInfo.success = success;
+		MessageInfo.fileNullError = fileNullError;
+		MessageInfo.fileNameNullError = fileNameNullError;
+		MessageInfo.invalidFileNameError = invalidFileNameError;
+		MessageInfo.fileSizeExceededError = fileSizeExceededError;
+		MessageInfo.fileTypeError = fileTypeError;
+	}
 
 }
