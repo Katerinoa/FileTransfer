@@ -11,6 +11,7 @@ import com.practice.filetransfer.Constant.FileType;
 import com.practice.filetransfer.Constant.MessageInfo;
 import com.practice.filetransfer.Exception.FileValidationException;
 import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
@@ -29,14 +30,10 @@ public class QiNiuUtil {
 		Configuration cfg = new Configuration(Region.huanan());
 		//上传管理器
 		UploadManager uploadManager = new UploadManager(cfg);
-		//获取上传凭证
-		String accessKey = AuthorizeInfo.accessKey;
-		String secretKey = AuthorizeInfo.secretKey;
-		String bucketName = AuthorizeInfo.bucketName;
-		String bucketPath = AuthorizeInfo.bucketPath;
 		//鉴权信息
-		Auth auth = Auth.create(accessKey,secretKey);
-		String upToken = auth.uploadToken(bucketName, null, 3600, new StringMap().put("force", "true"));//覆盖同名文件
+		Auth auth = Auth.create(AuthorizeInfo.accessKey,AuthorizeInfo.secretKey);
+		//获取上传令牌
+		String upToken = auth.uploadToken(AuthorizeInfo.bucketName, null, 3600, new StringMap().put("force", "true"));//覆盖同名文件
 
 		String key = null;
 		if(filetype.equals(FileType.IMAGE))
@@ -50,6 +47,23 @@ public class QiNiuUtil {
 		//解析上传成功结果
 		DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
 
-		return bucketPath+putRet.key;
+		return AuthorizeInfo.bucketPath+putRet.key;
+	}
+
+	public void Delete(String key, String bucketName) throws Exception {
+		//构造一个指定地区的配置类
+		Configuration cfg = new Configuration(Region.huanan());
+		//认证管理器
+		Auth auth = Auth.create(AuthorizeInfo.accessKey, AuthorizeInfo.secretKey);
+		//删除管理器
+		BucketManager bucketManager = new BucketManager(auth, cfg);
+
+		//调用delete方法删除文件
+		Response response = bucketManager.delete(bucketName, key);
+
+		//检查响应状态码，如果成功则不做处理，否则抛出异常
+		if (response.statusCode != 200) {
+			throw new Exception("Failed to delete file: " + response.bodyString());
+		}
 	}
 }
