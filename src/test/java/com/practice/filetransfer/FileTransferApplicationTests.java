@@ -1,6 +1,5 @@
 package com.practice.filetransfer;
 
-import com.practice.filetransfer.Constant.FileType;
 import com.practice.filetransfer.Util.QiNiuUtil;
 import com.practice.filetransfer.config.QiNiuConfig;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ class FileTransferApplicationTests {
 		File file = new File("C:\\Users\\TingLans\\Desktop\\mouse.png");
 		FileInputStream input = new FileInputStream(file);
 
-		String res = qiNiuUtil.Upload(input, "testFile",FileType.IMAGE);
+		String res = qiNiuUtil.Upload(input, "Image/testFile");
 		System.out.println("res = " + res);
 	}
 }

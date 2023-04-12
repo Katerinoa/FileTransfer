@@ -7,5 +7,7 @@ public interface ErrorCode {
 	int invalidFileNameError = 303;
 	int fileSizeExceededError = 304;
 	int fileTypeError = 305;
+	int deleteFalseError = 306;
+	int fileNotExistError = 307;
 
 }

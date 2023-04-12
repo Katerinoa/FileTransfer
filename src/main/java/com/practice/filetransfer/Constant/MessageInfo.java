@@ -13,4 +13,8 @@ public class MessageInfo {
 	public static String fileSizeExceededError;
 
 	public static String fileTypeError;
+
+	public static String deleteFalseError;
+
+	public static String fileNotExistError;
 }

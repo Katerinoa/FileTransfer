@@ -28,6 +28,12 @@ public class MessageConfig {
 	@Value("${message.fileTypeError}")
 	public String fileTypeError;
 
+	@Value("${message.deleteFalseError}")
+	public String deleteFalseError;
+
+	@Value("${message.fileNotExistError}")
+	public String fileNotExistError;
+
 	@Bean
 	public void messageInit() {
 		MessageInfo.success = success;
@@ -36,6 +42,8 @@ public class MessageConfig {
 		MessageInfo.invalidFileNameError = invalidFileNameError;
 		MessageInfo.fileSizeExceededError = fileSizeExceededError;
 		MessageInfo.fileTypeError = fileTypeError;
+		MessageInfo.deleteFalseError = deleteFalseError;
+		MessageInfo.fileNotExistError = fileNotExistError;
 	}
 
 }

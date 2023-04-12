@@ -1,8 +1,10 @@
 package com.practice.filetransfer.Service.Impl;
 
+import com.practice.filetransfer.Constant.ErrorCode;
 import com.practice.filetransfer.Constant.FileType;
 import com.practice.filetransfer.Constant.MessageInfo;
 import com.practice.filetransfer.Constant.Status;
+import com.practice.filetransfer.Exception.FileValidationException;
 import com.practice.filetransfer.Filter.fileFormatFilter;
 import com.practice.filetransfer.Message.Message;
 import com.practice.filetransfer.Message.SuccessMessage;
@@ -26,15 +28,20 @@ public class UpdateServiceImpl implements UpdateService {
 		fileFormatFilter.fileValidateCheck(file,fileType);
 
 		FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
-		String url = "";
-		if (fileType.equals(FileType.IMAGE)) {
-			url = new QiNiuUtil().Upload(fileInputStream,fileName, FileType.IMAGE);
+
+		String key = null;
+		if(fileType.equals(FileType.IMAGE)) {
+			key = "Image/"+fileName.toString();
 		}
-		else if (fileType.equals(FileType.VIDEO)) {
-			url = new QiNiuUtil().Upload(fileInputStream,fileName, FileType.VIDEO);
+		else if(fileType.equals(FileType.VIDEO)) {
+			key = "Video/"+fileName.toString();
 		}
-		fileInputStream.close();
-		return new SuccessMessage(Status.OK, MessageInfo.success,url);
+		else
+			throw new FileValidationException(MessageInfo.fileTypeError, ErrorCode.fileTypeError);
+
+		String url = new QiNiuUtil().Upload(fileInputStream,key);
+
+		return new SuccessMessage(Status.OK, MessageInfo.success, url);
 	}
 
 }
