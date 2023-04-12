@@ -1,7 +1,8 @@
 package com.practice.filetransfer.Constant;
 
-public interface FileType {
+public class FileType {
 
-	int IMAGE = 1;
-	int VIDEO = 2;
+	public static String IMAGE = "image";
+	public static String VIDEO = "video";
+
 }

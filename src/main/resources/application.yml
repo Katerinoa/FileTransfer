@@ -19,5 +19,9 @@ oss:
 # 消息内容
 message:
   success: 操作成功！
-  fileNameNullError: 文件名不能为空！
+  fileNullError: 文件不能为空
+  fileNameNullError: 文件名不能为空
   invalidFileNameError: 文件名应仅包含汉字、字母、数字、下划线和点号
+  fileTypeError: 文件类型不匹配
+  fileSizeExceededError: 文件大小过大
+

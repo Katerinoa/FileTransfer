@@ -5,6 +5,9 @@ public interface Status {
 	int OK = 0;
 	int FALSE = 1;
 
-	int fileNameNullError = 301;
-	int invalidFileNameError = 302;
+	int fileNullError = 301;
+	int fileNameNullError = 302;
+	int invalidFileNameError = 303;
+	int fileSizeExceededError = 304;
+	int fileTypeError = 305;
 }

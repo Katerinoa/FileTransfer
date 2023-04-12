@@ -23,7 +23,7 @@ public class QiNiuUtil {
 	//@Autowired
 	//private QiNiuConfig qiniuConfig;
 
-	public String Upload(FileInputStream file, String fileName, int filetype) throws Exception{
+	public String Upload(FileInputStream file, String fileName, String filetype) throws Exception{
 		//构造一个指定地区的配置类
 		Configuration cfg = new Configuration(Region.huanan());
 		//上传管理器
@@ -38,9 +38,9 @@ public class QiNiuUtil {
 		String upToken = auth.uploadToken(bucketName);
 
 		String key = null;
-		if(filetype == FileType.IMAGE)
+		if(filetype.equals(FileType.IMAGE))
 			key = "Image/" + fileName.toString();
-		else if(filetype == FileType.VIDEO)
+		else if(filetype.equals(FileType.VIDEO))
 			key = "Video/" + fileName.toString();
 		else
 			System.err.println("文件类型错误");  //TODO: 此处需抛出异常
