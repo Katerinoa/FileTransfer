@@ -24,9 +24,6 @@ import java.io.FileInputStream;
 @Component
 public class QiNiuUtil {
 
-	//@Autowired
-	//private QiNiuConfig qiniuConfig;
-
 	public String Upload(FileInputStream file, String fileName, String filetype) throws Exception{
 		//构造一个指定地区的配置类
 		Configuration cfg = new Configuration(Region.huanan());

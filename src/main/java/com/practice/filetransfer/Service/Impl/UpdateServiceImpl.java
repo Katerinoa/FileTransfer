@@ -21,11 +21,10 @@ public class UpdateServiceImpl implements UpdateService {
 	QiNiuUtil qiNiuUtil;
 
 	@Override
-	public Message Upload(MultipartFile file, String fileType) throws Exception {
+	public Message Upload(MultipartFile file,String fileName, String fileType) throws Exception {
 
 		fileFormatFilter.fileValidateCheck(file,fileType);
 
-		String fileName = file.getOriginalFilename();
 		FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
 		String url = "";
 		if (fileType.equals(FileType.IMAGE)) {
@@ -38,8 +37,4 @@ public class UpdateServiceImpl implements UpdateService {
 		return new SuccessMessage(Status.OK, MessageInfo.success,url);
 	}
 
-	private boolean validateFileName(String fileName) {
-		String regex = "^[a-zA-Z0-9_\\u4e00-\\u9fa5_\\.]+$";
-		return fileName.matches(regex);
-	}
 }
