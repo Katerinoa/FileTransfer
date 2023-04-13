@@ -37,6 +37,9 @@ public class MessageConfig {
 	@Value("${message.queryPageError}")
 	public String queryPageError;
 
+	/**
+	 * 初始化消息常量类
+	 */
 	@Bean
 	public void messageInit() {
 		MessageInfo.success = success;

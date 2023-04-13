@@ -3,6 +3,9 @@ package com.practice.filetransfer.Message;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 上传成功消息
+ */
 @Data
 @NoArgsConstructor
 public class SuccessMessage extends Message{

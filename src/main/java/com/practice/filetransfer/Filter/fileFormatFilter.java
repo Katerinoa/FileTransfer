@@ -14,25 +14,30 @@ public class fileFormatFilter {
 
 	private static final int fileMaxSize = 50*1024*1024;
 
+	// 检查文件是否为空
 	private static boolean checkFileNull(MultipartFile file) {
 		return file==null ||file.isEmpty() ||file.getSize()==0;
 	}
 
+	// 检查文件名是否为空
 	private static boolean checkFileNameNull(MultipartFile file) {
 		String fileName = file.getOriginalFilename();
 		return fileName == null;
 	}
 
+	// 检查文件名是否有效（字母、数字和下划线）
 	private static boolean checkFileNameValid(MultipartFile file) {
 		String fileName = file.getOriginalFilename();
 		String regex = "^[a-zA-Z0-9_\\u4e00-\\u9fa5_\\.]+$";
 		return !fileName.matches(regex);
 	}
 
+	// 检查文件大小是否超过传输限制
 	private static boolean checkFileSize(MultipartFile file) {
 		return file.getSize() > fileMaxSize;
 	}
 
+	// 检查文件类型是否符合接口参数
 	private static boolean checkFileType(MultipartFile file, String fileType) {
 		String contentType = file.getContentType();
 		return !(contentType != null && contentType.startsWith(fileType));

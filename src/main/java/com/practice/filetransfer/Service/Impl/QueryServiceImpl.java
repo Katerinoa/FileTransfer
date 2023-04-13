@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 查询服务
+ */
 @Service
 public class QueryServiceImpl implements QueryService {
 
@@ -23,6 +26,7 @@ public class QueryServiceImpl implements QueryService {
 	public Message getFileList(int page, int pageSize, String fileType) throws Exception {
 
 		List<FileInfo> fileList = qiNiuUtil.QueryList(fileType);
+		//根据查询页码，取出数据并封装到FileDTOPagination中
 		return new QueryResultMessage(Status.OK, MessageInfo.success,new FileDTOPagination(page, pageSize, fileList));
 	}
 }

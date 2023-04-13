@@ -1,5 +1,8 @@
 package com.practice.filetransfer.Exception;
 
+/**
+ * 查询失败异常
+ */
 public class FileQueryException extends FileTransferException{
 
 	private final int errorCode;

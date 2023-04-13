@@ -1,5 +1,8 @@
 package com.practice.filetransfer.Constant;
 
+/**
+ * 消息常量类
+ */
 public class MessageInfo {
 
 	public static String success;

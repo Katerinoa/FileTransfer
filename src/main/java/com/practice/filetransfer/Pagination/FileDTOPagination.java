@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 文件查询分页
+ */
 @Data
 @NoArgsConstructor
 public class FileDTOPagination extends Pagination {
@@ -24,6 +27,14 @@ public class FileDTOPagination extends Pagination {
 		this.fileDTOList = getFileDTOListList(currentPage,pageSize,fileInfoList);
 	}
 
+	/**
+	 *
+	 * @param currentPage 查询的页码
+	 * @param pageSize 每页的文件数量
+	 * @param fileInfoList 查到的所有文件列表
+	 * @return 要查询的文件列表
+	 * @throws Exception 页码错误异常
+	 */
 	private List<FileDTO> getFileDTOListList(int currentPage,int pageSize,List<FileInfo> fileInfoList) throws Exception{
 
 		int totalFiles = fileInfoList.size();

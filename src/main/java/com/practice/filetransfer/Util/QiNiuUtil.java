@@ -26,20 +26,28 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 七牛云接口
+ */
 @Component
 public class QiNiuUtil {
 
 	public String Upload(FileInputStream file, String key) throws Exception{
+		// 获取配置信息
 		Configuration cfg = new Configuration(Region.huanan());
+		// 获取上传管理器
 		UploadManager uploadManager = new UploadManager(cfg);
+		// 获取鉴权信息
 		Auth auth = Auth.create(AuthorizeInfo.accessKey,AuthorizeInfo.secretKey);
-		String upToken = auth.uploadToken(AuthorizeInfo.bucketName, null, 3600, new StringMap().put("force", "true"));//覆盖同名文件
+		// 获取上传令牌
+		String upToken = auth.uploadToken(AuthorizeInfo.bucketName, null, 3600, new StringMap().put("force", "true"));// put("force", "true") 覆盖同名文件
 
 		Response response = uploadManager.put(file,key,upToken,null,null);
 
+		// 解析上传信息
 		DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
 
-		return AuthorizeInfo.bucketPath+putRet.key;
+		return AuthorizeInfo.bucketPath+putRet.key; //返回上传后的文件路径
 	}
 
 	public void Delete(String key, String bucketName) throws Exception {
@@ -64,13 +72,14 @@ public class QiNiuUtil {
 		Auth auth = Auth.create(AuthorizeInfo.accessKey, AuthorizeInfo.secretKey);
 		BucketManager bucketManager = new BucketManager(auth, cfg);
 
+		// 根据接口参数选择查询前缀，即查询的文件夹
 		String prefix = "";
 		if(fileType.equals(FileType.IMAGE))
 			prefix = "Image/";
 		else if(fileType.equals(FileType.VIDEO))
 			prefix = "Video/";
 
-		String marker = "";
+		String marker = ""; //保存上一次查询的末尾标识，便于下次查询定位
 		int limit = 1000;
 		BucketManager.FileListIterator fileListIterator = bucketManager.createFileListIterator(AuthorizeInfo.bucketName, prefix, limit, marker);
 		List<FileInfo> allFiles = new ArrayList<>();

@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 
+/**
+ * 上传服务
+ */
 @Service
 public class UpdateServiceImpl implements UpdateService {
 
@@ -26,12 +29,16 @@ public class UpdateServiceImpl implements UpdateService {
 	@Override
 	public Message Upload(MultipartFile file,String fileName, String fileType) throws Exception {
 
+		// 文件合法检查
 		fileFormatFilter.fileValidateCheck(file,fileType);
 
+		//获取文件的输入流
 		FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
 
-		String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());//自动添加拓展名
+		//获取文件的拓展名
+		String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
 
+		// 根据接口参数选择上传文件夹，并自动添加后缀名
 		String key = null;
 		if(fileType.equals(FileType.IMAGE)) {
 			key = String.format("Image/%s.%s", fileName,extension);
@@ -42,6 +49,7 @@ public class UpdateServiceImpl implements UpdateService {
 		else
 			throw new FileValidationException(MessageInfo.fileTypeError, ErrorCode.fileTypeError);
 
+		// 上传并获取文件路径
 		String url = new QiNiuUtil().Upload(fileInputStream,key);
 
 		return new SuccessMessage(Status.OK, MessageInfo.success, url);

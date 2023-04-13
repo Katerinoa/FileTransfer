@@ -1,5 +1,8 @@
 package com.practice.filetransfer.Constant;
 
+/**
+ * 错误码
+ */
 public interface ErrorCode {
 
 	int fileNullError = 301;

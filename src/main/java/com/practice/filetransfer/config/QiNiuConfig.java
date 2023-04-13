@@ -26,6 +26,10 @@ public class QiNiuConfig {
 	@Value("${oss.qiniu.bucketPath}")
 	private String bucketPath;
 
+
+	/**
+	 * 初始化配置信息常量类
+	 */
 	@Bean
 	public void qiniuInit() {
 		AuthorizeInfo.accessKey = accessKey;

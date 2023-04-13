@@ -1,5 +1,8 @@
 package com.practice.filetransfer.Constant;
 
+/**
+ * 七牛云配置信息常量
+ */
 public class AuthorizeInfo {
 
 	public static String accessKey;

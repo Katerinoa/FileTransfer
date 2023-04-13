@@ -11,6 +11,9 @@ import com.practice.filetransfer.Util.QiNiuUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 删除服务
+ */
 @Service
 public class DeleteServiceImpl implements DeleteService {
 
@@ -20,14 +23,16 @@ public class DeleteServiceImpl implements DeleteService {
 	@Override
 	public Message Delete(String key, String bucketName, String fileType) throws Exception {
 
+		// 根据接口参数 选择要删除的文件所在文件夹
 		if(fileType.equals(FileType.IMAGE))
-			key = "Image/" + key.toString();
+			key = String.format("Image/%s", key);
 		else if (fileType.equals(FileType.VIDEO))
-			key = "Video/" + key.toString();
+			key = String.format("Video/%s", key);
 		else
 			throw new FileValidationException(MessageInfo.fileTypeError, ErrorCode.fileTypeError);
 
 		qiNiuUtil.Delete(key,bucketName);
+
 		return new Message(Status.OK, MessageInfo.success);
 	}
 }
