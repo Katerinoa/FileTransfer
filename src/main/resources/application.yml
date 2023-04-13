@@ -26,4 +26,5 @@ message:
   fileSizeExceededError: 文件大小过大
   deleteFalseError: 文件删除失败
   fileNotExistError: 目标文件不存在
+  queryPageError: 页码错误
 

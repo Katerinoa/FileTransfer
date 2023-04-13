@@ -9,5 +9,6 @@ public interface ErrorCode {
 	int fileTypeError = 305;
 	int deleteFalseError = 306;
 	int fileNotExistError = 307;
+	int queryPageError = 308;
 
 }

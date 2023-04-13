@@ -17,4 +17,6 @@ public class MessageInfo {
 	public static String deleteFalseError;
 
 	public static String fileNotExistError;
+
+	public static String queryPageError;
 }

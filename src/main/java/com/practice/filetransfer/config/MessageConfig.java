@@ -34,6 +34,9 @@ public class MessageConfig {
 	@Value("${message.fileNotExistError}")
 	public String fileNotExistError;
 
+	@Value("${message.queryPageError}")
+	public String queryPageError;
+
 	@Bean
 	public void messageInit() {
 		MessageInfo.success = success;
@@ -44,6 +47,7 @@ public class MessageConfig {
 		MessageInfo.fileTypeError = fileTypeError;
 		MessageInfo.deleteFalseError = deleteFalseError;
 		MessageInfo.fileNotExistError = fileNotExistError;
+		MessageInfo.queryPageError = queryPageError;
 	}
 
 }
