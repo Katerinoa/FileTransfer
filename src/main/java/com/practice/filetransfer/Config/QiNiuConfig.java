@@ -1,4 +1,4 @@
-package com.practice.filetransfer.config;
+package com.practice.filetransfer.Config;
 
 /**
  * 用于获取七牛云的配置信息

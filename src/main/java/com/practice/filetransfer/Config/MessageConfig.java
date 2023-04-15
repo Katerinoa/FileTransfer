@@ -1,4 +1,4 @@
-package com.practice.filetransfer.config;
+package com.practice.filetransfer.Config;
 
 import com.practice.filetransfer.Constant.MessageInfo;
 import lombok.Data;

@@ -3,10 +3,23 @@ server:
 
 # tomcat文件传输限制
 spring:
+  # servlet 配置
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
+
+  # redis 配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: metafit
+    lettuce:
+      pool:
+        max-active: 8 #最大连接
+        max-idle: 8 #最大空闲连接
+        min-idle: 0 #最小空闲连接
+        max-wait: 100 #连接等待时间 ms
 
 # 七牛云秘钥
 oss:
@@ -27,4 +40,7 @@ message:
   deleteFalseError: 文件删除失败
   fileNotExistError: 目标文件不存在
   queryPageError: 页码错误
+
+
+
 
