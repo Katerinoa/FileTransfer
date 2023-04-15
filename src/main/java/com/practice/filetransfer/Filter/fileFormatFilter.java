@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * 文件合法检查
  */
-@Component
 public class fileFormatFilter {
 
 	private static final int fileMaxSize = 50*1024*1024;

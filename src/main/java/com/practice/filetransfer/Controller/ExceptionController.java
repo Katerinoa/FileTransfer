@@ -3,6 +3,7 @@ package com.practice.filetransfer.Controller;
 import com.practice.filetransfer.Constant.Status;
 import com.practice.filetransfer.Exception.FileDeleteException;
 import com.practice.filetransfer.Exception.FileQueryException;
+import com.practice.filetransfer.Exception.FileTransferException;
 import com.practice.filetransfer.Exception.FileValidationException;
 import com.practice.filetransfer.Message.ErrorMessage;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,12 @@ public class ExceptionController {
 	@ExceptionHandler(FileQueryException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleFileQueryException(FileQueryException ex) {
+		return new ErrorMessage(Status.FALSE, ex.getMessage(), ex.getErrorCode());
+	}
+
+	@ExceptionHandler(FileTransferException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleFileTransferException(FileTransferException ex) {
 		return new ErrorMessage(Status.FALSE, ex.getMessage(), ex.getErrorCode());
 	}
 }

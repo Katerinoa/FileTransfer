@@ -5,7 +5,14 @@ package com.practice.filetransfer.Exception;
  */
 public class FileTransferException extends Exception{
 
-	public FileTransferException(String message) {
+	private final int errorCode;
+
+	public FileTransferException(String message, int errorCode) {
 		super(message);
+		this.errorCode = errorCode;
+	}
+
+	public int getErrorCode() {
+		return errorCode;
 	}
 }

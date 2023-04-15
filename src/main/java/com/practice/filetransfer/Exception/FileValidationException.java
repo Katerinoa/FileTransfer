@@ -5,14 +5,7 @@ package com.practice.filetransfer.Exception;
  */
 public class FileValidationException  extends FileTransferException{
 
-	private final int errorCode;
-
 	public FileValidationException(String message, int errorCode) {
-		super(message);
-		this.errorCode = errorCode;
-	}
-
-	public int getErrorCode() {
-		return errorCode;
+		super(message,errorCode);
 	}
 }

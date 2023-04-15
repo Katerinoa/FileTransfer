@@ -14,12 +14,6 @@ spring:
     host: 127.0.0.1
     port: 6379
     password: metafit
-    lettuce:
-      pool:
-        max-active: 8 #最大连接
-        max-idle: 8 #最大空闲连接
-        min-idle: 0 #最小空闲连接
-        max-wait: 100 #连接等待时间 ms
 
 # 七牛云秘钥
 oss:
@@ -40,6 +34,13 @@ message:
   deleteFalseError: 文件删除失败
   fileNotExistError: 目标文件不存在
   queryPageError: 页码错误
+
+# 腾讯云密钥
+sms:
+  tencentcloud:
+    SECRET_ID: AKIDc3EBtMZYIp9G9pIXZLuDH5dv0rUs1uYw
+    SECRET_KEY: EE6j7GUTCfuue8MK2Wlma8QVMxIQJyNW
+
 
 
 
