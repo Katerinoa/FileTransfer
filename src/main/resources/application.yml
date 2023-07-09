@@ -20,8 +20,8 @@ oss:
   qiniu:
     accessKey: A_Oq5r4u1CxkfjqK76gvbzcisZKy58HS7aNJEpgX
     secretKey: K4ZS0TPpBH6cY9_mUhezpEMOEIcFZKJ5Fqk7P2e6
-    bucketName: filetransferpractice
-    bucketPath: http://rsxjnizx9.hn-bkt.clouddn.com/
+    bucketName: second-hand-trading-system
+    bucketPath: http://rxilzivv0.hn-bkt.clouddn.com/
 
 # 消息内容
 message:
